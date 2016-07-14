@@ -1,0 +1,13 @@
+﻿body {
+    background-color: black;
+}
+
+span {
+    color: darkgreen;
+    position: absolute;
+    text-shadow: 0 0 1em greenyellow;
+}
+
+div {
+    position: absolute;
+}

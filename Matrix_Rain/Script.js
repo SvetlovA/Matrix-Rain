@@ -12,7 +12,7 @@
         createSymbols: function (symbols) {
             var x = 0;
             var line = document.createElement("div");
-            for (var i = 0; i < 99; i++) {
+            for (var i = 0; i < window.innerWidth / 16; i++) {
                 var symbol = document.createElement("span");
                 symbol.textContent = symbols[randomSymbol(symbols.length)];
                 symbol.style.left = x + "em";
@@ -36,7 +36,7 @@ var MatrixRain = function () {
             lines[i].style.top = Number(lines[i].style.top.match(/\d+/)) + 1 + "em";
         }
         if (lines.length > 0) {
-            if (Number(lines[0].style.top.match(/\d+/)) > 44) {
+            if (Number(lines[0].style.top.match(/\d+/)) > window.innerHeight / 16) {
                 document.body.removeChild(document.body.firstChild);
             }
         }

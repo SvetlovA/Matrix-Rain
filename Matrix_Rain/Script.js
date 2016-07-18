@@ -6,12 +6,15 @@
     var backgroundColor = document.querySelector("#background-color");
     var symbolsColor = document.querySelector("#symbols-color");
     var fontSize = document.querySelector("#font-size");
+    var textShadow = document.querySelector("#brightness");
+    var shadowColor = document.querySelector("#brightness-color");
 
     settings.style.width = "300px";
     settings.style.height = window.innerHeight + "px";
     matrix.style.font = fontSize.value + "px sans-serif";
     matrix.style.width = window.innerWidth - Number(settings.style.width.match(/\d+/)) - 100 + "px";
     matrix.style.height = window.innerHeight + "px";
+    matrix.style.textShadow = "0 0 " + textShadow.value + "px " + shadowColor.value;
     document.body.style.backgroundColor = backgroundColor.value;
 
     var matrixWidth = Number(matrix.style.width.match(/\d+/));
@@ -36,6 +39,14 @@
         else {
             alert("Значение должно быть числом или цифрой!!!");
         }
+    });
+
+    textShadow.addEventListener("change", function () {
+        matrix.style.textShadow = "0 0 " + textShadow.value + "px " + shadowColor.value;
+    });
+
+    shadowColor.addEventListener("change", function () {
+        matrix.style.textShadow = "0 0 " + textShadow.value + "px " + shadowColor.value;
     });
 
     function clearAll(node) {

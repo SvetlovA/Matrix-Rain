@@ -1,5 +1,6 @@
 ﻿body {
     padding: 0;
+    margin: 0;
 }
 
 .clearfix::after {
@@ -11,7 +12,7 @@
 .field .matrix {
     margin: 0;
     display: inline-block;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .field .settings {
@@ -47,5 +48,4 @@ label {
 
 .field .matrix span {
     position: absolute;
-    text-shadow: 0 0 1em greenyellow;
 }

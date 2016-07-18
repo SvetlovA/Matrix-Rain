@@ -1,0 +1,10 @@
+﻿body {
+}
+
+.matrix {
+    background-color: black;
+    fill: darkgreen;
+    text-shadow: 0 0 1em greenyellow;
+    width: 100%;
+    height: 100%;
+}

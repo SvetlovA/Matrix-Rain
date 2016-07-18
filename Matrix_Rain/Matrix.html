@@ -2,11 +2,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Matrix Rain</title>
 	<meta charset="utf-8" />
     <link href="StyleSheet.css" rel="stylesheet" />
 </head>
 <body>
+    <audio autoplay="autoplay" loop="loop">
+        <source src="audio/Matrix.mp3" type="audio/mpeg" />
+    </audio>
+    <div class="field clearfix">
+        <div class="matrix"></div>
+        <div class="settings">
+            <div class="main">
+                <div class="input-field">
+                    <label for="symbols-color">Цвет символов:&nbsp</label>
+                    <input id="symbols-color" type="color" value="#008000" />
+                </div>
+                <div class="input-field">
+                    <label for="background-color">Цвет фона:&nbsp</label>
+                    <input id="background-color" type="color" />
+                </div>
+                <div class="input-field">
+                    <label for="font-size">Размер шрифта:&nbsp</label>
+                    <input id="font-size" value="30" />
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="Script.js"></script>
 </body>
 </html>

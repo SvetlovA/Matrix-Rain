@@ -1,43 +1,83 @@
-﻿var workWithSymbols = function () {
-    function randomSymbol(length) {
+﻿var MatrixRain = function () {
+    var lines = [];
+    var symbols = "1234567890qwertyuiop[]asdfghjkl;'\zxcvbnm,./+-*!@#$%^&*()贝制复写模六天友水出外北母半右目周招承性担宙直定底的毒届波版非並放法宝枚";
+    var matrix = document.querySelector(".matrix");
+    var settings = document.querySelector(".settings");
+    var backgroundColor = document.querySelector("#background-color");
+    var symbolsColor = document.querySelector("#symbols-color");
+    var fontSize = document.querySelector("#font-size");
+
+    settings.style.width = "300px";
+    settings.style.height = window.innerHeight + "px";
+    matrix.style.font = fontSize.value + "px sans-serif";
+    matrix.style.width = window.innerWidth - Number(settings.style.width.match(/\d+/)) - 100 + "px";
+    matrix.style.height = window.innerHeight + "px";
+    document.body.style.backgroundColor = backgroundColor.value;
+
+    var matrixWidth = Number(matrix.style.width.match(/\d+/));
+    var matrixHeight = Number(matrix.style.height.match(/\d+/));
+    var matrixFontSize = Number(matrix.style.font.match(/\d+/));
+
+    backgroundColor.addEventListener("change", function () {
+        document.body.style.backgroundColor = backgroundColor.value;
+    });
+
+    fontSize.addEventListener("change", function () {
+        clearAll(matrix);
+        if (!isNaN(Number(fontSize.value))) {
+            if (fontSize.value > 0 && fontSize.value <= 400) {
+                matrix.style.font = fontSize.value + "px sans-serif";
+                matrixFontSize = Number(matrix.style.font.match(/\d+/));
+            }
+            else {
+                alert("Значение не может быть 0, отрицательным!!!");
+            }
+        }
+        else {
+            alert("Значение должно быть числом или цифрой!!!");
+        }
+    });
+
+    function clearAll(node) {
+        while (node.firstChild) {
+            node.removeChild(node.firstChild);
+        }
+        lines = [];
+    }
+
+    function randomSymbol(symbols) {
         if (Math.random() < 0.7) {
-            return Math.floor(Math.random() * length);
+            return symbols[Math.floor(Math.random() * symbols.length)];
         }
         else {
             return " ";
         }
     }
 
-    return {
-        createSymbols: function (symbols) {
-            var x = 0;
-            var line = document.createElement("div");
-            for (var i = 0; i < window.innerWidth / 16; i++) {
-                var symbol = document.createElement("span");
-                symbol.textContent = symbols[randomSymbol(symbols.length)];
-                symbol.style.left = x + "em";
-                line.appendChild(symbol);
-                x += 1;
-            }
-            document.body.appendChild(line);
-            line.style.top = "0em"
-            return line;
+    function createSymbols() {
+        var x = 0;
+        var line = document.createElement("div");
+        line.setAttribute("class", "line");
+        for (var i = 0; i < matrixWidth / matrixFontSize; i++) {
+            var symbol = document.createElement("span");
+            symbol.textContent = randomSymbol(symbols);
+            symbol.style.left = x + "em";
+            symbol.style.color = symbolsColor.value;
+            line.appendChild(symbol);
+            x += 1;
         }
-    };
-}();
-
-
-var MatrixRain = function () {
-    var lines = [];
-    var symbols = "1234567890qwertyuiop[]asdfghjkl;'\zxcvbnm,./+-*!@#$%^&*()";
+        matrix.appendChild(line);
+        line.style.top = "0em"
+        return line;
+    }
 
     function bias() {
         for (var i = 0; i < lines.length; i++) {
             lines[i].style.top = Number(lines[i].style.top.match(/\d+/)) + 1 + "em";
         }
         if (lines.length > 0) {
-            if (Number(lines[0].style.top.match(/\d+/)) > window.innerHeight / 16) {
-                document.body.removeChild(document.body.firstChild);
+            if (Number(lines[0].style.top.match(/\d+/)) > matrixHeight / matrixFontSize) {
+                matrix.removeChild(matrix.firstChild);
             }
         }
     }
@@ -45,7 +85,7 @@ var MatrixRain = function () {
     return {
         rain: function () {
             bias();
-            var line = workWithSymbols.createSymbols(symbols);
+            var line = createSymbols(symbols);
             lines.push(line);
             requestAnimationFrame(MatrixRain.rain);
         }

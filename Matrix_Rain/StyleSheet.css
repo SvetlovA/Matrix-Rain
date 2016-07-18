@@ -1,13 +1,51 @@
 ﻿body {
-    background-color: black;
+    padding: 0;
 }
 
-span {
-    color: darkgreen;
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.field .matrix {
+    margin: 0;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.field .settings {
+    margin: 0;
+    padding: 20px;
+    display: inline-block;
+    float: right;
+    vertical-align: top;
+    background-color: grey;
+}
+
+.input-field {
+    margin-bottom: 10px;
+    display: block;
+    text-align: right;
+}
+
+#font-size {
+    width: 30px;
+}
+
+label {
+    float: left;
+}
+
+.main {
+    float: left;
+}
+
+.field .matrix .line {
+    position: absolute;
+}
+
+.field .matrix span {
     position: absolute;
     text-shadow: 0 0 1em greenyellow;
-}
-
-div {
-    position: absolute;
 }

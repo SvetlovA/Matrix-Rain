@@ -10,7 +10,7 @@
     var shadowColor = document.querySelector("#brightness-color");
 
     settings.style.width = "300px";
-    settings.style.height = window.innerHeight + "px";
+    settings.style.height = window.innerHeight - 25 + "px";
     matrix.style.font = fontSize.value + "px sans-serif";
     matrix.style.width = window.innerWidth - Number(settings.style.width.match(/\d+/)) - 100 + "px";
     matrix.style.height = window.innerHeight + "px";

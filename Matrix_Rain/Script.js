@@ -8,6 +8,7 @@
     var fontSize = document.querySelector("#font-size");
     var textShadow = document.querySelector("#brightness");
     var shadowColor = document.querySelector("#brightness-color");
+    var speed = document.querySelector("#fps");
 
     settings.style.width = "300px";
     settings.style.height = window.innerHeight - 25 + "px";
@@ -20,6 +21,7 @@
     var matrixWidth = Number(matrix.style.width.match(/\d+/));
     var matrixHeight = Number(matrix.style.height.match(/\d+/));
     var matrixFontSize = Number(matrix.style.font.match(/\d+/));
+    var fps = speed.value;
 
     backgroundColor.addEventListener("change", function () {
         document.body.style.backgroundColor = backgroundColor.value;
@@ -47,6 +49,20 @@
 
     shadowColor.addEventListener("change", function () {
         matrix.style.textShadow = "0 0 " + textShadow.value + "px " + shadowColor.value;
+    });
+
+    speed.addEventListener("change", function () {
+        if (!isNaN(Number(speed.value))) {
+            if (speed.value > 0 && speed.value <= 100) {
+                fps = speed.value;
+            }
+            else {
+                alert("Частота не может быть равной нулю или быть отрицательной или больше 100!!!");
+            }
+        }
+        else {
+            alert("Частота должна быть числом или цифрой!!!");
+        }
     });
 
     function clearAll(node) {
@@ -93,12 +109,27 @@
         }
     }
 
+    function changeSymbols() {
+        var lines = matrix.childNodes;
+        for (var i = 0; i < lines.length; i++) {
+            var elements = lines[i].childNodes;
+            for (var j = 0; j < elements.length; j++) {
+                if (Math.random() < 0.5) {
+                    elements[j].textContent = randomSymbol(symbols);
+                }
+            }
+        }
+    }
+
     return {
         rain: function () {
-            bias();
-            var line = createSymbols(symbols);
-            lines.push(line);
-            requestAnimationFrame(MatrixRain.rain);
+            setTimeout(function () {
+                requestAnimationFrame(MatrixRain.rain);
+                bias();
+                var line = createSymbols();
+                lines.push(line);
+                changeSymbols();
+            }, 1000 / fps);
         }
     };
 }();

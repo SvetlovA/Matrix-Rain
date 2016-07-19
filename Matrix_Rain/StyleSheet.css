@@ -34,6 +34,10 @@
     width: 30px;
 }
 
+#fps {
+    width: 30px;
+}
+
 label {
     float: left;
 }

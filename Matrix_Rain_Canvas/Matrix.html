@@ -10,7 +10,37 @@
     <audio autoplay="autoplay" loop="loop">
         <source src="audio/Matrix.mp3" type="audio/mpeg" />
     </audio>
-    <canvas class="matrix"></canvas>
+    <div class="field clearfix">
+        <canvas class="matrix"></canvas>
+        <div class="settings">
+            <div class="main">
+                <div class="input-field">
+                    <label for="symbols-color">Цвет символов:&nbsp</label>
+                    <input id="symbols-color" type="color" value="#008000" />
+                </div>
+                <div class="input-field">
+                    <label for="background-color">Цвет фона:&nbsp</label>
+                    <input id="background-color" type="color" />
+                </div>
+                <div class="input-field">
+                    <label for="font-size">Размер шрифта:&nbsp</label>
+                    <input id="font-size" value="30" />
+                </div>
+                <div class="input-field">
+                    <label for="brightness">Яркость подсветки:&nbsp</label>
+                    <input id="brightness" type="range" min="0" max="50" value="5" />
+                </div>
+                <div class="input-field">
+                    <label for="brightness-color">Цвет подсветки:&nbsp</label>
+                    <input id="brightness-color" type="color" value="#ADFF2F" />
+                </div>
+                <div class="input-field">
+                    <label for="fps">FPS:&nbsp</label>
+                    <input id="fps" value="30" />
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="Script.js"></script>
 </body>
 </html>
